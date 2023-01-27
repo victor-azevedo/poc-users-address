@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import { UserAddressBody, UserBody } from "protocols";
-import { usersRepository } from "../repositories/users.Repository";
+import { usersRepository } from "../repositories/usersRepository";
 
 async function insertUser(userAddress: UserAddressBody): Promise<number> {
   const user = { ...userAddress };

@@ -1,6 +1,6 @@
 import { Address } from "@prisma/client";
 import { AddressBody } from "protocols.js";
-import { addressRepository } from "../repositories/address.Repository.js";
+import { addressRepository } from "../repositories/addressRepository.js";
 
 async function getAddress(): Promise<Address[]> {
   const address = await addressRepository.getAddress();

@@ -4,11 +4,11 @@ import {
   getUserById,
   deleteUserById,
   updateUser,
-} from "../controllers/usersController";
+} from "../controllers/usersController.js";
 import {
   userQueryValidation,
   userValidation,
-} from "../middlewares/usersMiddleware";
+} from "../middlewares/usersMiddleware.js";
 import { Router } from "express";
 
 const router = Router();
