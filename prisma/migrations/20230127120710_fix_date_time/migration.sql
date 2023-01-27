@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "courses" ALTER COLUMN "startDate" SET DATA TYPE DATE,
+ALTER COLUMN "endDate" SET DATA TYPE DATE;
+
+-- AlterTable
+ALTER TABLE "users" ALTER COLUMN "birthday" SET DATA TYPE DATE;

@@ -14,7 +14,7 @@ model User {
   id        Int       @id @default(autoincrement())
   name      String
   nickname  String
-  birthday  DateTime
+  birthday  DateTime  @db.Date
   email     String    @unique
   phone     String    @unique @db.VarChar(11)
   cpf       String    @unique @db.VarChar(11)
@@ -43,8 +43,8 @@ model Course {
   name        String   @db.VarChar(60)
   description String
   places      Int
-  startDate   DateTime
-  endDate     DateTime
+  startDate   DateTime @db.Date
+  endDate     DateTime @db.Date
   courseLoad  Int
   createdAt   DateTime @default(now())
 

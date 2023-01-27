@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import usersRoutes from "./routes/usersRoute.js";
-import usersCourses from "./routes/usersCourses.js";
+import addressRoutes from "./routes/addressRoute.js";
 
 dotenv.config();
 const app: Application = express();
@@ -13,7 +13,7 @@ app.use(cors());
 
 app.get("/health", (_req: Request, res: Response) => res.send("OK!"));
 app.use("/users", usersRoutes);
-app.use("/courses", usersCourses);
+app.use("/address", addressRoutes);
 
 const PORT = Number(process.env.PORT) || 4000;
 app.listen(PORT, () => {

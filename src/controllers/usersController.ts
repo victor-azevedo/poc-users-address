@@ -1,11 +1,11 @@
 import { User } from "@prisma/client";
 import { Request, Response } from "express";
 import { queryRequest } from "middlewares/usersMiddleware";
-import { UserBody } from "protocols";
+import { UserAddressBody, UserBody } from "protocols.js";
 import { usersServices } from "../services/usersServices";
 
 export async function insertUser(req: Request, res: Response) {
-  const user = req.body as UserBody;
+  const user = req.body as UserAddressBody;
 
   try {
     const id: number = await usersServices.insertUser(user);
@@ -30,9 +30,7 @@ export async function getUsers(req: queryRequest, res: Response) {
 }
 
 export async function getUserById(req: queryRequest, res: Response) {
-  const { id } = req.params as unknown as ParamId;
-
-  console.log(id);
+  const id = parseInt(req.params.id);
 
   try {
     const user: User = await usersServices.getUserById(id);
@@ -44,7 +42,7 @@ export async function getUserById(req: queryRequest, res: Response) {
 }
 
 export async function deleteUserById(req: queryRequest, res: Response) {
-  const { id } = req.params as unknown as ParamId;
+  const id = parseInt(req.params.id);
 
   try {
     await usersServices.deleteUserById(id);
@@ -57,7 +55,7 @@ export async function deleteUserById(req: queryRequest, res: Response) {
 
 export async function updateUser(req: queryRequest, res: Response) {
   const user = req.body as UserBody;
-  const { id } = req.params as unknown as ParamId;
+  const id = parseInt(req.params.id);
 
   try {
     await usersServices.updateUser(id, user);

@@ -1,9 +1,12 @@
 import { User } from "@prisma/client";
-import { UserBody } from "protocols";
+import { UserAddressBody, UserBody } from "protocols";
 import { usersRepository } from "../repositories/users.Repository";
 
-async function insertUser(user: UserBody): Promise<number> {
-  const id: number = await usersRepository.insertUser(user);
+async function insertUser(userAddress: UserAddressBody): Promise<number> {
+  const user = { ...userAddress };
+  const address = { ...userAddress.address };
+  delete user.address;
+  const id: number = await usersRepository.insertUser(user, address);
 
   return id;
 }
@@ -32,14 +35,12 @@ async function getUserById(id: number): Promise<User> {
   return user;
 }
 
-async function deleteUserById(id: number): Promise<number> {
+async function deleteUserById(id: number): Promise<void> {
   const deleteCount: number = await usersRepository.deleteUserById(id);
 
   if (deleteCount === 0) {
     throw Error("Not Found");
   }
-
-  return deleteCount;
 }
 
 async function updateUser(id: number, user: UserBody): Promise<void> {
