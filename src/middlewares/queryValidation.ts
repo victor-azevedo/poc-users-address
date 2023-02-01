@@ -1,12 +1,13 @@
 import { NextFunction, Request, Response } from "express";
+import Joi from "joi";
 import httpStatus from "http-status";
-import Joi, { ObjectSchema } from "joi";
+import { querySchema } from "../schema/querySchema.js";
 
-export function bodyValidation(schema: ObjectSchema) {
+export function queryValidation() {
   return (req: Request, res: Response, next: NextFunction) => {
-    const body = req.body;
+    const query = req.query;
 
-    const { error }: Joi.ValidationResult = schema.validate(body, {
+    const { error }: Joi.ValidationResult = querySchema.validate(query, {
       abortEarly: false,
     });
 

@@ -1,4 +1,4 @@
-import { CourseBody } from "protocols.js";
+import { CourseBody } from "../protocols.js";
 import { coursesRepository } from "../repositories/coursesRepository.js";
 import { Course } from "@prisma/client";
 

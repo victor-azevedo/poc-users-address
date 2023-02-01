@@ -1,8 +1,11 @@
 import { User } from "@prisma/client";
 import { Request, Response } from "express";
-import { queryRequest } from "middlewares/usersMiddleware";
-import { UserAddressBody, UserBody } from "protocols.js";
+import { UserAddressBody, UserBody, UserQuery } from "../protocols.js";
 import { usersServices } from "../services/usersServices";
+import { handleApplicationErrors } from "../middlewares/errorHandlingMiddleware.js";
+import dayjs from "dayjs";
+import { ParsedUrlQuery } from "querystring";
+import httpStatus from "http-status";
 
 export async function insertUser(req: Request, res: Response) {
   const user = req.body as UserAddressBody;
@@ -10,60 +13,53 @@ export async function insertUser(req: Request, res: Response) {
   try {
     const id: number = await usersServices.insertUser(user);
 
-    res.send({ message: `Created user id = ${id}` });
-  } catch (error) {
-    console.log(error);
-    res.status(400).send(error.message);
+    res.status(httpStatus.CREATED).send({ message: `Created user id = ${id}` });
+  } catch (err) {
+    handleApplicationErrors(err, res);
   }
 }
 
-export async function getUsers(req: queryRequest, res: Response) {
-  const bornAfter = req.bornAfter as Date;
+export async function getUsers(req: Request, res: Response) {
+  const bornAfter = req.query?.bornAfter as string;
 
   try {
     const users: User[] = await usersServices.getUsers(bornAfter);
     res.send(users);
-  } catch (error) {
-    console.log(error);
-    res.status(400).send(error.message);
+  } catch (err) {
+    handleApplicationErrors(err, res);
   }
 }
 
-export async function getUserById(req: queryRequest, res: Response) {
+export async function getUserById(req: Request, res: Response) {
   const id = parseInt(req.params.id);
 
   try {
     const user: User = await usersServices.getUserById(id);
     res.send(user);
-  } catch (error) {
-    console.log(error);
-    res.status(400).send(error.message);
+  } catch (err) {
+    handleApplicationErrors(err, res);
   }
 }
 
-export async function deleteUserById(req: queryRequest, res: Response) {
+export async function deleteUserById(req: Request, res: Response) {
   const id = parseInt(req.params.id);
 
   try {
-    await usersServices.deleteUserById(id);
-    res.send({ message: `Deleted user id = ${id}` });
-  } catch (error) {
-    console.log(error);
-    res.status(400).send(error.message);
+    const IdDeleted = await usersServices.deleteUserById(id);
+    res.send({ message: `Deleted user id = ${IdDeleted}` });
+  } catch (err) {
+    handleApplicationErrors(err, res);
   }
 }
 
-export async function updateUser(req: queryRequest, res: Response) {
+export async function updateUser(req: Request, res: Response) {
   const user = req.body as UserBody;
   const id = parseInt(req.params.id);
 
   try {
     await usersServices.updateUser(id, user);
     res.send({ message: `Update user id = ${id}` });
-  } catch (error) {
-    console.log(error);
-    res.status(400).send(error.message);
+  } catch (err) {
+    handleApplicationErrors(err, res);
   }
 }
-
-type ParamId = { id: number };

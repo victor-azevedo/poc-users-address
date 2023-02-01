@@ -1,6 +1,6 @@
 import { Address } from "@prisma/client";
 import prisma from "../database";
-import { AddressBody } from "protocols";
+import { AddressBody } from "../protocols";
 
 async function getAddress(): Promise<Address[]> {
   return await prisma.address.findMany();

@@ -1,7 +1,7 @@
 import { Course } from "@prisma/client";
 import prisma from "../database";
 import dayjs from "dayjs";
-import { CourseBody } from "protocols";
+import { CourseBody } from "../protocols";
 
 async function createCourse(course: CourseBody): Promise<number> {
   const startDate = dayjs(course.startDate).format();

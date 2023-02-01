@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import prisma from "../database";
-import { AddressBody, UserBody } from "protocols";
+import { AddressBody, UserBody } from "../protocols";
 import dayjs from "dayjs";
 
 async function insertUser(
@@ -25,9 +25,8 @@ async function getUserById(id: number): Promise<User> {
   });
 }
 
-async function getUsersFilterDate(_bornAfter: Date): Promise<User[]> {
-  const bornAfter = dayjs(_bornAfter).format();
-  return await prisma.user.findMany({
+async function getUsersFilterDate(bornAfter: Date): Promise<User[]> {
+  return prisma.user.findMany({
     where: {
       birthday: {
         gte: bornAfter,

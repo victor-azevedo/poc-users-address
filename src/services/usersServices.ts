@@ -1,20 +1,26 @@
 import { User } from "@prisma/client";
-import { UserAddressBody, UserBody } from "protocols";
+import { UserAddressBody, UserBody } from "../protocols";
 import { usersRepository } from "../repositories/usersRepository";
+import { badRequestError, notFoundError } from "../errors";
 
 async function insertUser(userAddress: UserAddressBody): Promise<number> {
   const user = { ...userAddress };
   const address = { ...userAddress.address };
   delete user.address;
+
   const id: number = await usersRepository.insertUser(user, address);
+
+  if (!id) {
+    throw badRequestError();
+  }
 
   return id;
 }
 
-async function getUsers(bornAfter: Date): Promise<User[]> {
+async function getUsers(bornAfter: string): Promise<User[]> {
   if (bornAfter) {
     const usersList: User[] = await usersRepository.getUsersFilterDate(
-      bornAfter
+      new Date(bornAfter)
     );
 
     return usersList;
@@ -29,18 +35,20 @@ async function getUserById(id: number): Promise<User> {
   const user: User = await usersRepository.getUserById(id);
 
   if (!user) {
-    throw Error("Not Found");
+    throw notFoundError();
   }
 
   return user;
 }
 
-async function deleteUserById(id: number): Promise<void> {
-  const deleteCount: number = await usersRepository.deleteUserById(id);
+async function deleteUserById(id: number): Promise<number> {
+  const idDeleted: number = await usersRepository.deleteUserById(id);
 
-  if (deleteCount === 0) {
-    throw Error("Not Found");
+  if (!idDeleted) {
+    throw notFoundError();
   }
+
+  return idDeleted;
 }
 
 async function updateUser(id: number, user: UserBody): Promise<void> {
