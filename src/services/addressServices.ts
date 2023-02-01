@@ -1,7 +1,7 @@
 import { Address } from "@prisma/client";
-import { AddressBody } from "../protocols.js";
-import { addressRepository } from "../repositories/addressRepository.js";
-import { notFoundError } from "../errors/not-found-error.js";
+import { AddressBody } from "../protocols";
+import { addressRepository } from "../repositories/addressRepository";
+import { notFoundError } from "../errors/not-found-error";
 
 async function getAddress(): Promise<Address[]> {
   const address = await addressRepository.getAddress();

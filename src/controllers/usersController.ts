@@ -1,8 +1,8 @@
 import { User } from "@prisma/client";
 import { Request, Response } from "express";
-import { UserAddressBody, UserBody, UserQuery } from "../protocols.js";
+import { UserAddressBody, UserBody, UserQuery } from "../protocols";
 import { usersServices } from "../services/usersServices";
-import { handleApplicationErrors } from "../middlewares/errorHandlingMiddleware.js";
+import { handleApplicationErrors } from "../middlewares/errorHandlingMiddleware";
 import dayjs from "dayjs";
 import { ParsedUrlQuery } from "querystring";
 import httpStatus from "http-status";

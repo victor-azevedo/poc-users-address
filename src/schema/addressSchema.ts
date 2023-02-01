@@ -1,5 +1,5 @@
 import Joi, { ObjectSchema } from "joi";
-import { AddressBody } from "../protocols.js";
+import { AddressBody } from "../protocols";
 
 export const addressSchema: ObjectSchema = Joi.object<AddressBody>({
   street: Joi.string().trim().required(),

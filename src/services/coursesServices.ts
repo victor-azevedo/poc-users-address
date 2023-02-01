@@ -1,5 +1,5 @@
-import { CourseBody } from "../protocols.js";
-import { coursesRepository } from "../repositories/coursesRepository.js";
+import { CourseBody } from "../protocols";
+import { coursesRepository } from "../repositories/coursesRepository";
 import { Course } from "@prisma/client";
 
 async function createCourse(course: CourseBody): Promise<number> {

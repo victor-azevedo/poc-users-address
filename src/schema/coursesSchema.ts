@@ -1,6 +1,6 @@
 import coreJoi, { ObjectSchema } from "joi";
 import joiDate from "@joi/date";
-import { CourseBody } from "protocols.js";
+import { CourseBody } from "../protocols";
 
 const Joi = coreJoi.extend(joiDate) as typeof coreJoi;
 

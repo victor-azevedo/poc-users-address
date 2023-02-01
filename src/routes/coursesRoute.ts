@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { bodyValidation } from "../middlewares/bodyValidation.js";
-import { courseSchema } from "../schema/coursesSchema.js";
+import { bodyValidation } from "../middlewares/bodyValidation";
+import { courseSchema } from "../schema/coursesSchema";
 import {
   createCourse,
   getCourses,
   getCourse,
   deleteCourse,
   updateCourse,
-} from "../controllers/coursesController.js";
+} from "../controllers/coursesController";
 
 const router = Router();
 

@@ -1,6 +1,6 @@
 import coreJoi, { ObjectSchema } from "joi";
 import joiDate from "@joi/date";
-import { UserAddressBody } from "protocols.js";
+import { UserAddressBody } from "../protocols";
 import { addressSchema } from "./addressSchema";
 
 const Joi = coreJoi.extend(joiDate) as typeof coreJoi;

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 import httpStatus from "http-status";
-import { paramsSchema } from "../schema/paramsSchema.js";
+import { paramsSchema } from "../schema/paramsSchema";
 
 export function paramsValidation() {
   return (req: Request, res: Response, next: NextFunction) => {

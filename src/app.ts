@@ -2,9 +2,9 @@ import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import usersRoutes from "./routes/usersRoute.js";
-import addressRoutes from "./routes/addressRoute.js";
-import coursesRoutes from "./routes/coursesRoute.js";
+import usersRoutes from "./routes/usersRoute";
+import addressRoutes from "./routes/addressRoute";
+import coursesRoutes from "./routes/coursesRoute";
 
 dotenv.config();
 const app: Application = express();
@@ -21,3 +21,5 @@ const PORT = Number(process.env.PORT) || 4000;
 app.listen(PORT, () => {
   console.log(`[Listening ON] Port: ${PORT}`);
 });
+
+export default app;

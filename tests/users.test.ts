@@ -1,8 +1,13 @@
-describe("Users tests", () => {
-  it("teste 1", () => {
-    const resultado = 4 + 5;
+import supertest from "supertest";
+import app from "../src/app";
 
-    expect(resultado).toBe(9);
+const api = supertest(app);
+
+describe("Users tests", () => {
+  it("Test GET users", () => {
+    const resultado = api.get("users");
+
+    expect(resultado).toEqual([]);
   });
   it("teste 2", () => {
     const resultado = 4 + 5;

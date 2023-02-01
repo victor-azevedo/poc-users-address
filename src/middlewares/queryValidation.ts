@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 import httpStatus from "http-status";
-import { querySchema } from "../schema/querySchema.js";
+import { querySchema } from "../schema/querySchema";
 
 export function queryValidation() {
   return (req: Request, res: Response, next: NextFunction) => {

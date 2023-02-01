@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { CourseBody } from "../protocols.js";
-import { coursesServices } from "../services/coursesServices.js";
-import { handleApplicationErrors } from "../middlewares/errorHandlingMiddleware.js";
+import { CourseBody } from "../protocols";
+import { coursesServices } from "../services/coursesServices";
+import { handleApplicationErrors } from "../middlewares/errorHandlingMiddleware";
 
 export async function createCourse(req: Request, res: Response) {
   const course = req.body as CourseBody;

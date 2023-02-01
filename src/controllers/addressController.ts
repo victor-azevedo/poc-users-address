@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { addressServices } from "../services/addressServices.js";
-import { AddressBody } from "../protocols.js";
-import { handleApplicationErrors } from "../middlewares/errorHandlingMiddleware.js";
+import { addressServices } from "../services/addressServices";
+import { AddressBody } from "../protocols";
+import { handleApplicationErrors } from "../middlewares/errorHandlingMiddleware";
 
 export async function getAddress(req: Request, res: Response) {
   try {

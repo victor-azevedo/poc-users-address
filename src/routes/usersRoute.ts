@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { userSchema } from "../schema/usersSchema.js";
-import { bodyValidation } from "../middlewares/bodyValidation.js";
-import { queryValidation } from "../middlewares/queryValidation.js";
-import { paramsValidation } from "../middlewares/paramsValidation.js";
+import { userSchema } from "../schema/usersSchema";
+import { bodyValidation } from "../middlewares/bodyValidation";
+import { queryValidation } from "../middlewares/queryValidation";
+import { paramsValidation } from "../middlewares/paramsValidation";
 import {
   insertUser,
   getUsers,
   getUserById,
   updateUser,
   deleteUserById,
-} from "../controllers/usersController.js";
+} from "../controllers/usersController";
 
 const router = Router();
 
